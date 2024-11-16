@@ -58,7 +58,7 @@
 
         formData.append('caption', caption);
 
-        const url = `https://api.telegram.org/bot${tk}/sendPhoto`; // Default API endpoint for photo, will be replaced for other types.
+        let url = `https://api.telegram.org/bot${tk}/sendPhoto`; // Default API endpoint for photo, will be replaced for other types.
 
         // Change the URL based on file type
         if (fileExtension === 'gif') {
