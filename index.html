@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Телеграм Бот</title>
+    <style>
+        /* Стиль для блокировки интерфейса */
+        #overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+        #passwordWindow {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        input {
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div id="overlay">
+    <div id="passwordWindow">
+        <h2>Введите пароль</h2>
+        <input type="text" id="passwordInput" placeholder="Введите пароль...">
+        <button id="continueBtn">Продолжить</button>
+    </div>
+</div>
+<h1>/tell команда</h1>
+<input type='text' id='input'>
+<button id='coolbutt'>Отправить</button>
+
+<h1>/cat команда</h1>
+<input type="file" id="mediaInput" accept="image/*,video/*,image/gif">
+<input type="text" id="captionInput" placeholder="Введите подпись...">
+<button id="coolcat">Отправить медиа</button>
+
+<h1>/sticker команда</h1>
+<input type="file" id="stickerInput" accept="image/*">
+<button id="coolsticker">Отправить стикер</button>
+
+<h1>/voice команда</h1>
+<input type="file" id="audioInput" accept="audio/*">
+<button id="coolvoice">Отправить голосовое сообщение</button>
+
+<script src='code.js></script>
+</body>
+</html>
