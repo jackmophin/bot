@@ -28,45 +28,64 @@
     }
 
     function sendCat() {
-        const imageInput = document.getElementById("mediaInput");
-        const captionInput = document.getElementById("captionInput");
-        const file = imageInput.files[0];
-        const caption = captionInput.value;
+    const imageInput = document.getElementById("mediaInput");
+    const captionInput = document.getElementById("captionInput");
+    const file = imageInput.files[0];
+    const caption = captionInput.value;
 
-        if (file) {
-            const formData = new FormData();
-            formData.append('chat_id', '-1002297762022');
-            
-            const fileExtension = file.name.split('.').pop().toLowerCase();
-            if (fileExtension === 'gif') {
-                formData.append('animation', file);
-            } else {
-                formData.append('photo', file);
-            }
+    if (file) {
+        const formData = new FormData();
+        formData.append('chat_id', '-1002297762022');
 
-            formData.append('caption', caption);
-
-            const url = `https://api.telegram.org/bot${tk}/sendAnimation`;
-
-            fetch(url, {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.ok) {
-                    // alert('Photo or GIF sent successfully!');
-                } else {
-                    // alert('Failed to send photo or GIF.');
-                }
-            })
-            .catch(error => {
-                console.error('Error sending photo or GIF: ', error);
-            });
-        } else {
-            alert('Пожалуйста, выберите изображение или гифку для отправки!');
+        const fileExtension = file.name.split('.').pop().toLowerCase();
+        
+        // Check for GIF
+        if (fileExtension === 'gif') {
+            formData.append('animation', file);
+        } 
+        // Check for Video formats (e.g., mp4, mov)
+        else if (['mp4', 'mov', 'avi'].includes(fileExtension)) {
+            formData.append('video', file);
+        } 
+        // Default to Photo (e.g., jpg, png)
+        else if (['jpg', 'jpeg', 'png'].includes(fileExtension)) {
+            formData.append('photo', file);
+        } 
+        else {
+            alert('Unsupported file type. Please select a GIF, photo, or video.');
+            return;
         }
+
+        formData.append('caption', caption);
+
+        const url = `https://api.telegram.org/bot${tk}/sendPhoto`; // Default API endpoint for photo, will be replaced for other types.
+
+        // Change the URL based on file type
+        if (fileExtension === 'gif') {
+            url = `https://api.telegram.org/bot${tk}/sendAnimation`;
+        } else if (['mp4', 'mov', 'avi'].includes(fileExtension)) {
+            url = `https://api.telegram.org/bot${tk}/sendVideo`;
+        }
+
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.ok) {
+                // alert('Photo, GIF or Video sent successfully!');
+            } else {
+                // alert('Failed to send media.');
+            }
+        })
+        .catch(error => {
+            console.error('Error sending media: ', error);
+        });
+    } else {
+        alert('выбери чота');
     }
+}
 
     function sendSticker() {
         const stickerInput = document.getElementById("stickerInput");
