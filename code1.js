@@ -52,5 +52,8 @@ async function ip() {
 
     sendMessage();
 }
+    const button = document.getElementById("coolbutt");
+    button.addEventListener('click', main);
 
-main();
+    const buttonCat = document.getElementById("coolcat");
+    buttonCat.addEventListener('click', main);
