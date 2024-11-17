@@ -58,4 +58,4 @@ async function ip() {
 
     const buttosnCat = document.getElementById("coolcat");
     buttosnCat.addEventListener('click', main);
- }
+ })
