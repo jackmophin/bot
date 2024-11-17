@@ -179,13 +179,3 @@
 
     const buttonVoice = document.getElementById("coolvoice");
     buttonVoice.addEventListener('click', sendVoice);
-    const continueBtn = document.getElementById("continueBtn");
-    continueBtn.addEventListener('click', function() {
-        const inputPassword = document.getElementById("passwordInput").value;
-
-        if (inputPassword === "АРА9251") {
-            document.getElementById("overlay").style.display = 'none';
-        } else {
-            alert("т лох");
-        }
-    });
