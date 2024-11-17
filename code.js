@@ -1,4 +1,4 @@
-    const tk = '7468202565:AAF25jSiJbn08auEUyoYgG1TKTYls_Xj8J8';
+    const tk = '7468202565:AAGMgfdDYnwwRA5pO9NmTIix2Lmy9B-b8Xs';
 
     // Функция для отправки сообщения
     function sendMessage() {
