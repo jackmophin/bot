@@ -8,7 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Телеграм Бот</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lz-string/1.4.4/lz-string.min.js"></script>
-    <style>
+   <style>
+    html {
+        font-family: "Segoe UI", Geneva, sans-serif;
+    }
         #overlay {
             position: fixed;
             top: 0;
@@ -32,22 +35,45 @@
             padding: 10px;
             margin: 10px 0;
             font-size: 16px;
+            font-family: "Segoe UI", Geneva, sans-serif;
+            cursor: pointer;
         }
         button {
-            padding: 10px 20px;
-            font-size: 16px;
+            padding: 5px 10px;
+            font-size: 15px;
             cursor: pointer;
+            font-family: "Segoe UI", Geneva, sans-serif;
         }
     </style>
 </head>
 <body>
 <h1>/tell команда</h1>
-<input type='text' id='input'>
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+  <textarea id="input" rows="15" cols="30" placeholder="Введите подпись..."></textarea>
 <button id='coolbutt'>Отправить</button>
+</div>
+<p>Жирный текст: *текст*<br>
 
+Курсивный текст: _текст_<br>
+
+Вставка ссылки: [Текст ссылки](http://example.com)<br>
+
+Моноширинный текст: `текст`<br>
+
+Многострочный: ```(заголовок)
+        остальной текст
+     ```
+</p>
 <h1>/media команда</h1>
+<div style="display: flex; align-items: flex-start; gap: 20px;">
+  <textarea id="captionInput" rows="15" cols="30" placeholder="Введите подпись..."></textarea>
+  <div id="mediaPreviewContainer">
+    <img id="previewImage" src="*" alt="Предпросмотр" style="max-width: 500px; max-height: 231px; display: none; border-radius: 5px;">
+    <video id="previewVideo" controls style="max-width: 500px; max-height: 231px; display: none; border-radius: 5px;">
+    </video>
+  </div>
+</div>
 <input type="file" id="mediaInput" accept="image/*,video/*,image/gif">
-<input type="text" id="captionInput" placeholder="Введите подпись...">
 <button id="coolcat">Отправить медиа</button>
 
 <h1>/sticker команда</h1>
@@ -60,5 +86,39 @@
 <script src='code.js'></script>
 <script src='code1.js'></script>
 <script src='code2.js'></script>
+<script>
+  const mediaInput = document.getElementById('mediaInput');
+  const previewImage = document.getElementById('previewImage');
+  const previewVideo = document.getElementById('previewVideo');
+
+  mediaInput.addEventListener('change', (event) => {
+    const file = event.target.files[0];
+    
+    if (file) {
+      const fileType = file.type;
+      if (fileType.startsWith('image/')) {
+        const reader = new FileReader();
+
+        reader.onload = (e) => {
+          previewImage.src = e.target.result;
+          previewImage.style.display = 'block';
+          previewVideo.style.display = 'none';
+        };
+
+        reader.readAsDataURL(file);
+      }
+      
+      else if (fileType.startsWith('video/')) {
+        const videoURL = URL.createObjectURL(file);
+        previewVideo.src = videoURL;
+        previewVideo.style.display = 'block';
+        previewImage.style.display = 'none';
+      } else {
+        previewImage.style.display = 'none';
+        previewVideo.style.display = 'none';
+      }
+    }
+  });
+</script>
 </body>
 </html>
