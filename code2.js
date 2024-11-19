@@ -1,4 +1,4 @@
- document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("DOMContentLoaded", () => {
   const overlay = document.createElement("div");
   overlay.id = "overlay";
   overlay.style.position = "fixed";
@@ -14,7 +14,7 @@
 
   const passwordWindow = document.createElement("div");
   passwordWindow.id = "passwordWindow";
-  passwordWindow.style.backgroundColor = "white";
+  passwordWindow.style.backgroundColor = "black";
   passwordWindow.style.padding = "20px";
   passwordWindow.style.borderRadius = "8px";
   passwordWindow.style.textAlign = "center";
@@ -30,10 +30,12 @@
 
   const nicknameLabel = document.createElement("h2");
   nicknameLabel.innerText = "Введите Никнейм";
+  nicknameLabel.style.color = 'white';
   nicknameGroup.appendChild(nicknameLabel);
 
   const nicknameInput = document.createElement("input");
   nicknameInput.type = "text";
+  nicknameInput.style.color = 'white';
   nicknameInput.id = "nicknameInput";
   nicknameInput.placeholder = "Введите никнейм...";
   nicknameInput.style.padding = '5px';
@@ -41,11 +43,13 @@
   nicknameGroup.appendChild(nicknameInput);
 
   const passwordLabel = document.createElement("h2");
+  passwordLabel.style.color = 'white';
   passwordLabel.innerText = "Введите Пароль";
   passwordWindow.appendChild(passwordLabel);
 
   const passwordInput = document.createElement("input");
   passwordInput.type = "password";
+  passwordInput.style.color = 'white';
   passwordInput.id = "passwordInput";
   passwordInput.style.padding = '5px';
   passwordInput.style.margin = '5px';
@@ -55,14 +59,15 @@
   const continueBtn = document.createElement("button");
   continueBtn.id = "continueBtn";
   continueBtn.innerText = "Продолжить";
-  passwordWindow.appendChild(continueBtn);
+  continueBtn.style.marginTop = "25px"
+  nicknameGroup.appendChild(continueBtn);
 
   passwordWindow.appendChild(nicknameGroup);
   overlay.appendChild(passwordWindow);
   document.body.appendChild(overlay);
 
   const storedNickname = localStorage.getItem("nickname");
-  const correctPassword = "secret123";
+  const correctPassword = "elka295";
 
   if (!storedNickname) {
     nicknameGroup.style.display = "flex";
