@@ -10,7 +10,8 @@
             },
             body: JSON.stringify({
                 chat_id: '-1002297762022',
-                text: document.getElementById('input').value
+                text: document.getElementById('input').value,
+                parse_mode: 'Markdown'
             })
         })
         .then(response => response.json())
