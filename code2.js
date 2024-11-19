@@ -60,7 +60,7 @@
   continueBtn.id = "continueBtn";
   continueBtn.innerText = "Продолжить";
   continueBtn.style.marginTop = "25px"
-  nicknameGroup.appendChild(continueBtn);
+  passwordWindow.appendChild(continueBtn);
 
   passwordWindow.appendChild(nicknameGroup);
   overlay.appendChild(passwordWindow);
