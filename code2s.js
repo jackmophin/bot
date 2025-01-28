@@ -69,7 +69,7 @@
   document.body.appendChild(overlay);
 
   const storedNickname = localStorage.getItem("nickname");
-  const correctPassword = "elka295";
+  const correctPassword = "korsikgay";
 
   if (!storedNickname) {
     nicknameGroup.style.display = "flex";
